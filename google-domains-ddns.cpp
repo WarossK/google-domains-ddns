@@ -13,7 +13,6 @@ bool load_yaml()
 		user = config["config"]["user"].as<std::string>();
 		password = config["config"]["password"].as<std::string>();
 		address = config["config"]["address"].as<std::string>();
-		refresh_minutes = config["config"]["refresh_minutes"].as<uint64_t>();
 	}
 	catch (YAML::Exception & exception)
 	{
