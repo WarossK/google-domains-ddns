@@ -49,11 +49,10 @@ bool execute()
 			curlpp::Easy request{};
 			request.setOpt(curlpp::options::Url("https://" + user + ":" + password + "@domains.google.com/nic/update?hostname=" + address + "&myip=" + global_ip));
 			request.setOpt(curlpp::options::WriteFunction(
-				curlpp::Types::WriteFunctionFunctor([&global_ip](char* pstr, size_t size, size_t nmemb) -> size_t
+				curlpp::Types::WriteFunctionFunctor([](char* pstr, size_t size, size_t nmemb) -> size_t
 				{
 					size_t allsize = size * nmemb;
-					std::string response{};
-					response.append(static_cast<const char*>(pstr), allsize);
+					std::string response(static_cast<const char*>(pstr), 0, allsize);
 					fmt::print(response + "\n");
 					return allsize;
 				}))
